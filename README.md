@@ -29,7 +29,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: neondatabase/neon-billing-alerts@v1
+      - uses: sam-harri/neon-billing-alerts@v1
         with:
           neon_api_key: ${{ secrets.NEON_API_KEY }}
           neon_project_id: ${{ secrets.NEON_PROJECT_ID }}
@@ -53,7 +53,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: neondatabase/neon-billing-alerts@v1
+      - uses: sam-harri/neon-billing-alerts@v1
         with:
           neon_api_key: ${{ secrets.NEON_API_KEY }}
           neon_project_id: ${{ secrets.NEON_PROJECT_ID }}
