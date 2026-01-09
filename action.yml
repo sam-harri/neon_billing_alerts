@@ -1,0 +1,69 @@
+name: "Neon Billing Alerts GitHub Action"
+description: "Send Neon usage alerts to Slack or Discord webhooks."
+author: "Samuel Harrison"
+branding:
+  color: green
+  icon: dollar-sign
+
+inputs:
+  neon_api_key:
+    description: "Neon API key"
+    required: true
+  neon_project_id:
+    description: "Neon project ID"
+    required: true
+  webhook_url:
+    description: "Slack or Discord webhook URL"
+    required: true
+  alert_mode:
+    description: 'Alert mode: "always" or "thresholds"'
+    required: false
+    default: "thresholds"
+  max_spend_usd:
+    description: "Alert when total spend (USD) meets or exceeds this value"
+    required: false
+  max_cu_usage:
+    description: "Alert when compute CU hours meet or exceed this value"
+    required: false
+  max_storage_gb_month:
+    description: "Alert when storage GB-month meets or exceeds this value"
+    required: false
+  max_egress_gb:
+    description: "Alert when egress GB meets or exceeds this value"
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+      with:
+        version: "0.9.22"
+        enable-cache: true
+
+    - name: Install Python
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: |
+        uv python install
+
+    - name: Install dependencies
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: |
+        uv sync --locked --all-extras --dev
+
+    - name: Run Neon billing check
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      env:
+        NEON_API_KEY: ${{ inputs.neon_api_key }}
+        NEON_PROJECT_ID: ${{ inputs.neon_project_id }}
+        WEBHOOK_URL: ${{ inputs.webhook_url }}
+        ALERT_MODE: ${{ inputs.alert_mode }}
+        MAX_SPEND_USD: ${{ inputs.max_spend_usd }}
+        MAX_CU_USAGE: ${{ inputs.max_cu_usage }}
+        MAX_STORAGE_GB_MONTH: ${{ inputs.max_storage_gb_month }}
+        MAX_EGRESS_GB: ${{ inputs.max_egress_gb }}
+      run: |
+        uv run python src/main.py
