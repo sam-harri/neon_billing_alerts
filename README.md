@@ -8,7 +8,7 @@ Send Neon usage/cost alerts to Slack or Discord.
 - `neon_api_key` (required): Neon API key. Create one via the [Neon docs](https://neon.com/docs/manage/api-keys#creating-api-keys).
 - `neon_project_id` (required): ID of the Neon project to monitor (find it in the project Settings page).
 - `webhook_url` (required): Slack or Discord webhook URL. Slack setup: [docs](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks/). Discord setup: [docs](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
-- `alert_mode` (optional): `always` or `thresholds` (default `thresholds`).
+- `alert_mode` (optional): `always` or `thresholds` (default `always`).
   - `always`: send every run.
   - `thresholds`: send only when any threshold below is met; if none provided, the run fails fast.
 - Thresholds (optional, any combination):
