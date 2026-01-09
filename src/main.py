@@ -133,7 +133,7 @@ def _send_webhook(
     with request.urlopen(http_request) as response:
         if response.status >= 300:
             raise ValueError(f"Webhook delivery failed with status {response.status}.")
-        logger.info("Webhook delivered to %s (status %s)", webhook_url, response.status)
+        logger.info("Webhook delivered (status %s)", response.status)
 
 
 def _render_markdown(
@@ -251,7 +251,6 @@ def main() -> None:
         costs.storage_cost,
         costs.egress_cost,
     )
-    logger.info("Plan: %s, Project: %s", plan, project_id)
 
     if not triggers:
         logger.info("No alert: thresholds not met.")

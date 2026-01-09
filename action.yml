@@ -40,6 +40,7 @@ runs:
       with:
         version: "0.9.22"
         enable-cache: true
+        ignore-empty-workdir: true
 
     - name: Install Python
       shell: bash
