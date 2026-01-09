@@ -2,6 +2,8 @@
 
 Send Neon usage/cost alerts to Slack or Discord.
 
+*NOTE* The calculated cost is an estimate, and does not include storage costs from PITR.
+
 ## Inputs (action `with:`)
 - `neon_api_key` (required): Neon API key. Create one via the [Neon docs](https://neon.com/docs/manage/api-keys#creating-api-keys).
 - `neon_project_id` (required): ID of the Neon project to monitor (find it in the project Settings page).
