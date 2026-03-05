@@ -1,8 +1,10 @@
 # Neon Billing Alerts (GitHub Action)
 
+**IMPORTANT NOTE:** Built for fun and for my own usage. This is a strictly personal side-project. This Action is provided "as-is", is completely unofficial, and is **not** supported by Neon.
+
 Send Neon usage/cost alerts to Slack or Discord.
 
-*NOTE* The calculated cost is an estimate, and does not include storage costs from PITR.
+The calculated cost is an estimate, and does not include storage costs from PITR.
 
 ## Inputs (action `with:`)
 - `neon_api_key` (required): Neon API key. Create one via the [Neon docs](https://neon.com/docs/manage/api-keys#creating-api-keys).
